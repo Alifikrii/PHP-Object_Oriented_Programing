@@ -7,10 +7,12 @@ class produk{
             $penerbit ="penerbit", 
             $harga =0; //mengisi secara manual isi dari property dengan nilai default sesuka kalian
 
-    // method
-    public function sayhello() {
-        return "halo fikri!";
-    }
+    // // method
+    // public function sayhello() {
+    //     return "halo fikri!";
+    // }
+
+    p
 
 }
 
