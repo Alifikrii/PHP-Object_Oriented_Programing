@@ -11,7 +11,14 @@ class produk{
     // public function sayhello() {
     //     return "halo fikri!";
     // }
-
+        
+        public function getlabel(){
+            return "$this->penulis, $this->penerbit";
+        }
+        public function getprice(){
+            return "$this->judul, $this->harga";
+        }
+        
 
 }
 
@@ -26,13 +33,28 @@ class produk{
 // var_dump($produk2);
 
 $produk3 = new produk();
-$produk3 -> judul ="True Beauty";
-$produk3 -> penulis = "Fira";
-$produk3 -> penerbit = "erlangga";
-$produk3 -> harga = 300000;
+$produk3->judul ="True Beauty";
+$produk3->penulis = "Fira";
+$produk3->penerbit = "erlangga";
+$produk3->harga = 300000;
 
-echo "Drakor : $produk3->penulis, $produk3->penerbit";
+echo "FIRA : $produk3->penulis, $produk3->penerbit";
+echo "<hr>";
 echo "<br>";
-echo $produk3->sayhello();
+// echo $produk3->sayhello();
+echo "FIKRI : ". $produk3->getlabel();
+echo "<br>";
+echo "Harga : ". $produk3->getprice();
+echo "<hr>";
+
+$produk4 = new produk();
+$produk4->judul ="Start UP";
+$produk4->penulis = "FIKRI";
+$produk4->penerbit = "KOR";
+$produk4->harga = 300000;
+
+echo "FAJRI : ".$produk4->getlabel();
+echo "<br>";
+echo "Harga : ".$produk4->getprice();
 
 ?>
