@@ -12,7 +12,6 @@ class produk{
     //     return "halo fikri!";
     // }
 
-    p
 
 }
 
