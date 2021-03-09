@@ -5,17 +5,15 @@ class produk{
     public  $judul, 
             $penulis,    
             $penerbit, 
-            $harga,
-            $jumeps,
-            $playtime;
+            $harga;
+            
 
-     public function __construct( $judul="judul", $penulis="penulis", $penerbit ="penerbit", $harga =0, $jumeps = 0, $playtime = 0){
+     public function __construct( $judul="judul", $penulis="penulis", $penerbit ="penerbit", $harga =0)
+     {
          $this->judul = $judul;
          $this->penulis = $penulis;
          $this->penerbit = $penerbit;
          $this->harga = $harga;
-         $this->jumeps = $jumeps;
-         $this->playtime = $playtime;
     }
     
     public function getlabel(){
@@ -33,34 +31,42 @@ class produk{
 
 }
 
-// class CetakInfoProduk {
-//     public function cetak(Produk $produk){
-//         $string = "{$produk->judul} | {$produk->getlabel()} (Rp. {$produk->harga})";
-//         return $string;
-//     }
-// } 
 
 class drama extends produk 
 {
+    public $jumlah_eps;
+
+    public function __construct($judul="judul", $penulis="penulis", $penerbit ="penerbit", $harga = 0, $jumlah_eps = 0) {
+        parent::__construct($judul, $penulis, $penerbit , $harga);
+        $this->jumlah_eps = $jumlah_eps;
+
+    }
+
     public function infofull(){
-        $str =" DRAMA : " . parent::infofull() . "{$this->jumeps} episode.";
+        $str =" DRAMA : " . parent::infofull() . "{$this->jumlah_eps} episode.";    //untuk cara pertama
         return $str;
     }
    
 }
 class sinetron extends produk 
 {
+    public $jumlah_jam;
+
+    public function __construct($judul="judul", $penulis="penulis", $penerbit ="penerbit", $harga = 0, $jumlah_jam = 0) {
+        parent::__construct($judul, $penulis, $penerbit, $harga);
+        $this->jumlah_jam = $jumlah_jam;
+    }
     public function infofull(){
-        $str =" Sinetron : " . parent::infofull() . " {$this->playtime} jam.";
+        $str =" Sinetron : " . parent::infofull() . " {$this->jumlah_jam} jam.";   //untuk cara pertama
         return $str;
     }
     
 }
 
-$produk1 = new drama("Start_UP","Alfikri","TVN",16000, 16,0);
-$produk2 = new drama("True Beauty","Sapira","TVN",16000,16,0);
-$produk3 = new sinetron("Mr-Queen","Fajri","TVN",20000,0,20);
-$produk4 = new sinetron("2D1N","Nanda","DBS",20000,0,68);
+$produk1 = new drama("Start_UP","Alfikri","TVN",16000,16);
+$produk2 = new drama("True Beauty","Sapira","TVN",16000,16);
+$produk3 = new sinetron("Mr-Queen","Fajri","TVN",20000,20);
+$produk4 = new sinetron("2D1N","Nanda","DBS",20000,68);
 
 
 echo $produk1->infofull();
@@ -70,31 +76,6 @@ echo "<br>";
 echo $produk3->infofull();
 echo "<br>";
 echo $produk4->infofull();
-
-// echo "FIKRI : ".$produk1->getlabel();
-// echo "<br>";
-// echo "Judul dan Harga : ". $produk1->getprice();
-// echo "<hr>";
-// echo "FIRA : ".$produk2->getlabel();
-// echo "<br>";
-// echo "Judul dan Harga : ". $produk2->getprice();
-// echo "<hr>";
-// echo "FAJRI : ".$produk3->getlabel();
-// echo "<br>";
-// echo "Judul dan Harga : ". $produk3->getprice();
-// echo "<hr>";
-// echo "<br>";
-
-// echo "Mencoba Object Type";
-// echo "<br>";
-// echo "<br>";
-// $infoproduk1 = new CetakInfoProduk();
-// echo $infoproduk1->cetak($produk1);
-// echo "<br>";
-// echo $infoproduk1->cetak($produk2);
-// echo "<br>";
-// echo $infoproduk1->cetak($produk3);
-// echo "<hr>";
 
 ?>
 
