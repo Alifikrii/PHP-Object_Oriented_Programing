@@ -6,17 +6,15 @@ class produk{
             $penerbit, 
             $harga,
             $jumeps,
-            $playtime,
-            $tipe;
+            $playtime;
 
-     public function __construct( $judul="judul", $penulis="penulis", $penerbit ="penerbit", $harga =0, $jumeps = 0, $playtime = 0, $tipe ){
+     public function __construct( $judul="judul", $penulis="penulis", $penerbit ="penerbit", $harga =0, $jumeps = 0, $playtime = 0){
          $this->judul = $judul;
          $this->penulis = $penulis;
          $this->penerbit = $penerbit;
          $this->harga = $harga;
          $this->jumeps = $jumeps;
          $this->playtime = $playtime;
-         $this->tipe = $tipe;
     }
     
     public function getlabel(){
@@ -26,13 +24,7 @@ class produk{
         return "$this->harga";
     }
     public function infofull(){
-        $str = "{$this->tipe} : {$this->judul} | {$this->getlabel()} (Rp. {$this->getprice()})";
-        if ($this->tipe == "Drama") {       
-            $str .= " - {$this->jumeps} Halaman.";
-        }
-        else if($this->tipe == "Game") {
-            $str .= " ~ {$this->playtime} Jam.";
-        }
+        $str = "Utama : {$this->judul} | {$this->getlabel()} (Rp. {$this->getprice()})";
         return $str;
     }
 
@@ -40,19 +32,34 @@ class produk{
 
 }
 
-class CetakInfoProduk {
-    public function cetak(Produk $produk){
-        $string = "{$produk->judul} | {$produk->getlabel()} (Rp. {$produk->harga})";
-        return $string;
+// class CetakInfoProduk {
+//     public function cetak(Produk $produk){
+//         $string = "{$produk->judul} | {$produk->getlabel()} (Rp. {$produk->harga})";
+//         return $string;
+//     }
+// } 
+
+class drama extends produk 
+{
+    public function infofull(){
+        $str =" DRAMA : {$this->judul} | {$this->getlabel()} (Rp. {$this->getprice()}) {$this->jumeps} episode.";
+        return $str;
     }
-} 
+   
+}
+class sinetron extends produk 
+{
+    public function infofull(){
+        $str =" Sinetron : {$this->judul} | {$this->getlabel()} (Rp. {$this->getprice()}) {$this->playtime} jam.";
+        return $str;
+    }
+    
+}
 
-
-
-$produk1 = new produk("Start_UP","Alfikri","TVN","16000", 16, 0, "Drama");
-$produk2 = new produk("True Beauty","Sapira","TVN","16000",16, 0, "Drama");
-$produk3 = new produk("Mr-Queen","Fajri","TVN","20000",0,20, "Sinetron");
-
+$produk1 = new drama("Start_UP","Alfikri","TVN",16000, 16,0);
+$produk2 = new drama("True Beauty","Sapira","TVN",16000,16,0);
+$produk3 = new sinetron("Mr-Queen","Fajri","TVN",20000,0,20);
+$produk4 = new sinetron("2D1N","Nanda","DBS",20000,0,68);
 
 
 echo $produk1->infofull();
@@ -60,7 +67,8 @@ echo "<br>";
 echo $produk2->infofull();
 echo "<br>";
 echo $produk3->infofull();
-
+echo "<br>";
+echo $produk4->infofull();
 
 // echo "FIKRI : ".$produk1->getlabel();
 // echo "<br>";
