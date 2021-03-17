@@ -4,9 +4,11 @@
 class produk{
     public  $judul, 
             $penulis,    
-            $penerbit, 
-            $harga;
-            
+            $penerbit;
+    protected $diskon=0;
+    private $harga;
+    //  set private jika properti cuman boleh dipakai di klass nya     
+    //  set protected jika properti cuman boleh dipakai tidak sembarangan diubah     
 
      public function __construct( $judul="judul", $penulis="penulis", $penerbit ="penerbit", $harga =0)
      {
@@ -15,12 +17,13 @@ class produk{
          $this->penerbit = $penerbit;
          $this->harga = $harga;
     }
+
     
     public function getlabel(){
         return "$this->penulis, $this->penerbit";
     }
     public function getprice(){
-        return "$this->harga";
+        return $this->harga - ( $this->harga * $this->diskon/100);
     }
     public function infofull(){
         $str = "{$this->judul} | {$this->getlabel()} (Rp. {$this->getprice()})";
@@ -39,7 +42,7 @@ class drama extends produk
     public function __construct($judul="judul", $penulis="penulis", $penerbit ="penerbit", $harga = 0, $jumlah_eps = 0) {
         parent::__construct($judul, $penulis, $penerbit , $harga);
         $this->jumlah_eps = $jumlah_eps;
-// cara kedua
+
     }
 
     public function infofull(){
@@ -55,12 +58,19 @@ class sinetron extends produk
     public function __construct($judul="judul", $penulis="penulis", $penerbit ="penerbit", $harga = 0, $jumlah_jam = 0) {
         parent::__construct($judul, $penulis, $penerbit, $harga);
         $this->jumlah_jam = $jumlah_jam;
-    // cara kedua
     }
+// ini DISOKONNNN
+    public function set_diskon($diskon){
+        $this->diskon = $diskon;
+    }
+
     public function infofull(){
         $str =" Sinetron : " . parent::infofull() . " {$this->jumlah_jam} jam.";   //untuk cara pertama
         return $str;
     }
+
+   
+
     
 }
 
@@ -77,6 +87,13 @@ echo "<br>";
 echo $produk3->infofull();
 echo "<br>";
 echo $produk4->infofull();
+echo "<hr>";
 
+// $produk2->harga=2000;
+// membaca dan mengubah isi properti yang protected
+$produk3->set_diskon(50);
+echo "harga termasuk diskon = ";
+
+echo $produk2->getprice();
 ?>
 
