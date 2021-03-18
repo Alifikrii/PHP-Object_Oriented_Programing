@@ -1,7 +1,10 @@
 <?php
 
 // jadi overriding ini mengganti variabel yang dituliskan berulang yang sama dengan class parent dan child  sehingga lebih simpel yaitu dengan membuat dua duanya terpakai
+
+// ini namanya kelas (temptlate dari objek)
 class produk{
+    // ini namanya property
     private $judul, 
             $penulis,    
             $penerbit,
@@ -10,6 +13,7 @@ class produk{
     //  set private jika properti cuman boleh dipakai di klass nya tertyentu    
     //  set protected jika properti cuman boleh dipakai tidak sembarangan diubah hanya boleh digunakan di kelas dan turunannya     
 
+    // ini namanya method
      public function __construct( $judul="judul", $penulis="penulis", $penerbit ="penerbit", $harga =0)
      {
          $this->judul = $judul;
@@ -82,7 +86,7 @@ class sinetron extends produk
         return $str;
     }
 }
-
+// ini nmanya objek 
 $produk1 = new drama("Start_UP","Alfikri","TVN",16000,16);
 $produk2 = new drama("True Beauty","Sapira","TVN",16000,16);
 $produk3 = new sinetron("Mr-Queen","Fajri","TVN",20000,20);
